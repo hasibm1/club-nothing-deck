@@ -114,22 +114,17 @@
   /* decode animation */
   .dchar.scr{color:var(--accent)}
 
-  /* background art — Everest ridge + sound system */
-  .ridge{position:fixed;left:0;top:37%;width:100%;height:clamp(90px,20vh,230px);z-index:0;pointer-events:none}
-  .ridge path{fill:none;stroke:rgba(63,224,58,.32);stroke-width:1.1;vector-effect:non-scaling-stroke;
-    stroke-dasharray:1;stroke-dashoffset:1;animation:ridgedraw 26s ease-in-out .5s infinite}
-  @keyframes ridgedraw{
-    0%{stroke-dashoffset:1;opacity:0}
-    6%{opacity:1}
-    38%{stroke-dashoffset:0}
-    86%{stroke-dashoffset:0;opacity:1}
-    95%{stroke-dashoffset:0;opacity:0}
-    100%{stroke-dashoffset:1;opacity:0}
-  }
+  /* background art — sound-system components */
   .stack{position:absolute;pointer-events:none;z-index:0}
   .stack-hero{right:clamp(-30px,3vw,80px);top:50%;transform:translateY(-50%);width:min(42vw,500px);color:rgba(233,240,226,.15)}
-  .stack-end{left:50%;top:50%;transform:translate(-50%,-50%);width:min(62vw,620px);color:rgba(233,240,226,.10)}
+  .stack-end{left:50%;top:50%;transform:translate(-50%,-50%);width:min(62vw,620px);color:rgba(233,240,226,.13)}
   @media(max-width:900px){.stack-hero{display:none}}
+  .frag{position:absolute;pointer-events:none;z-index:0;color:rgba(233,240,226,.11)}
+  .frag.gr{color:rgba(63,224,58,.13)}
+  @media(max-width:760px){.frag{display:none}}
+  .dhand{transform-box:view-box;transform-origin:100px 100px;animation:dialspin 48s linear infinite}
+  .dhand2{transform-box:view-box;transform-origin:100px 100px;animation:dialspin 7s linear infinite}
+  @keyframes dialspin{to{transform:rotate(360deg)}}
   .woof{transform-box:fill-box;transform-origin:center;animation:woof .86s ease-in-out infinite}
   @keyframes woof{0%,60%,100%{transform:scale(1)}12%{transform:scale(1.045)}32%{transform:scale(.996)}}
 
@@ -148,13 +143,11 @@
   @media (prefers-reduced-motion: reduce){
     .slide,.progress,.dots button,.nav button,.hint{transition:none}
     h1.title::after{animation:none}
-    .ridge path{animation:none;stroke-dashoffset:0}
-    .woof{animation:none}
+    .woof,.dhand,.dhand2{animation:none}
   }
 </style>
 <div class="progress" id="progress"></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="sstack" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="310" y="122" width="375" height="68"/><line x1="357" y1="122" x2="357" y2="190"/><line x1="404" y1="122" x2="404" y2="190"/><line x1="451" y1="122" x2="451" y2="190"/><line x1="498" y1="122" x2="498" y2="190"/><line x1="544" y1="122" x2="544" y2="190"/><line x1="591" y1="122" x2="591" y2="190"/><line x1="638" y1="122" x2="638" y2="190"/><circle cx="333" cy="156" r="13"/><circle cx="333" cy="156" r="5"/><circle cx="380" cy="156" r="13"/><circle cx="380" cy="156" r="5"/><circle cx="427" cy="156" r="13"/><circle cx="427" cy="156" r="5"/><circle cx="474" cy="156" r="13"/><circle cx="474" cy="156" r="5"/><circle cx="521" cy="156" r="13"/><circle cx="521" cy="156" r="5"/><circle cx="568" cy="156" r="13"/><circle cx="568" cy="156" r="5"/><circle cx="615" cy="156" r="13"/><circle cx="615" cy="156" r="5"/><circle cx="662" cy="156" r="13"/><circle cx="662" cy="156" r="5"/><rect x="290" y="196" width="415" height="90"/><circle cx="355" cy="241" r="34"/><line x1="355" y1="241" x2="371" y2="230"/><circle cx="450" cy="241" r="34"/><line x1="450" y1="241" x2="437" y2="226"/><circle cx="548" cy="241" r="34"/><line x1="548" y1="241" x2="566" y2="247"/><circle cx="640" cy="241" r="34"/><line x1="640" y1="241" x2="631" y2="222"/><rect x="290" y="292" width="200" height="118"/><circle cx="342" cy="351" r="42"/><circle cx="342" cy="351" r="36"/><circle cx="438" cy="351" r="42"/><circle cx="438" cy="351" r="36"/><circle cx="390" cy="322" r="10"/><circle cx="390" cy="380" r="10"/><rect x="505" y="292" width="200" height="118"/><circle cx="557" cy="351" r="42"/><circle cx="557" cy="351" r="36"/><circle cx="653" cy="351" r="42"/><circle cx="653" cy="351" r="36"/><circle cx="605" cy="322" r="10"/><circle cx="605" cy="380" r="10"/><rect x="150" y="282" width="120" height="136"/><rect x="166" y="298" width="88" height="104"/><rect x="192" y="332" width="36" height="36"/><line x1="166" y1="298" x2="192" y2="332"/><line x1="254" y1="298" x2="228" y2="332"/><line x1="166" y1="402" x2="192" y2="368"/><line x1="254" y1="402" x2="228" y2="368"/><rect x="690" y="282" width="120" height="136"/><rect x="706" y="298" width="88" height="104"/><rect x="732" y="332" width="36" height="36"/><line x1="706" y1="298" x2="732" y2="332"/><line x1="794" y1="298" x2="768" y2="332"/><line x1="706" y1="402" x2="732" y2="368"/><line x1="794" y1="402" x2="768" y2="368"/><line x1="310" y1="124" x2="152" y2="284"/><line x1="685" y1="124" x2="808" y2="284"/><rect x="75" y="424" width="200" height="116"/><circle cx="175" cy="482" r="50"/><circle cx="175" cy="482" r="43"/><rect x="290" y="424" width="200" height="116"/><rect x="370" y="471" width="16" height="22"/><rect x="394" y="471" width="16" height="22"/><rect x="505" y="424" width="200" height="116"/><rect x="585" y="471" width="16" height="22"/><rect x="609" y="471" width="16" height="22"/><rect x="720" y="424" width="200" height="116"/><circle cx="820" cy="482" r="50"/><circle cx="820" cy="482" r="43"/><rect x="75" y="546" width="200" height="244"/><circle class="woof" cx="175" cy="626" r="70"/><circle cx="175" cy="626" r="62"/><line x1="87" y1="712" x2="263" y2="712"/><line x1="87" y1="790" x2="175" y2="712"/><line x1="263" y1="790" x2="175" y2="712"/><rect x="290" y="546" width="200" height="244"/><circle class="woof" cx="390" cy="626" r="70"/><circle cx="390" cy="626" r="62"/><line x1="302" y1="712" x2="478" y2="712"/><line x1="302" y1="790" x2="390" y2="712"/><line x1="478" y1="790" x2="390" y2="712"/><rect x="505" y="546" width="200" height="244"/><circle class="woof" cx="605" cy="626" r="70"/><circle cx="605" cy="626" r="62"/><line x1="517" y1="712" x2="693" y2="712"/><line x1="517" y1="790" x2="605" y2="712"/><line x1="693" y1="790" x2="605" y2="712"/><rect x="720" y="546" width="200" height="244"/><circle class="woof" cx="820" cy="626" r="70"/><circle cx="820" cy="626" r="62"/><line x1="732" y1="712" x2="908" y2="712"/><line x1="732" y1="790" x2="820" y2="712"/><line x1="908" y1="790" x2="820" y2="712"/></g></defs></svg>
-<svg class="ridge" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L58 138 L90 127 L122 141 L168 148 L210 137 L252 158 L292 166 L340 149 L400 118 L458 76 L505 57 L546 81 L577 96 L602 111 L630 101 L662 108 L700 97 L742 95 L792 91 L830 83 L862 90 L902 88 L950 93 L992 86 L1032 90 L1080 88 L1122 93 L1158 84 L1172 79 L1212 92 L1252 101 L1292 109 L1332 119 L1372 112 L1404 124 L1440 117" pathLength="1"/></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="sstack" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="310" y="122" width="375" height="68"/><line x1="357" y1="122" x2="357" y2="190"/><line x1="404" y1="122" x2="404" y2="190"/><line x1="451" y1="122" x2="451" y2="190"/><line x1="498" y1="122" x2="498" y2="190"/><line x1="544" y1="122" x2="544" y2="190"/><line x1="591" y1="122" x2="591" y2="190"/><line x1="638" y1="122" x2="638" y2="190"/><circle cx="333" cy="156" r="13"/><circle cx="333" cy="156" r="5"/><circle cx="380" cy="156" r="13"/><circle cx="380" cy="156" r="5"/><circle cx="427" cy="156" r="13"/><circle cx="427" cy="156" r="5"/><circle cx="474" cy="156" r="13"/><circle cx="474" cy="156" r="5"/><circle cx="521" cy="156" r="13"/><circle cx="521" cy="156" r="5"/><circle cx="568" cy="156" r="13"/><circle cx="568" cy="156" r="5"/><circle cx="615" cy="156" r="13"/><circle cx="615" cy="156" r="5"/><circle cx="662" cy="156" r="13"/><circle cx="662" cy="156" r="5"/><rect x="290" y="196" width="415" height="90"/><circle cx="355" cy="241" r="34"/><line x1="355" y1="241" x2="371" y2="230"/><circle cx="450" cy="241" r="34"/><line x1="450" y1="241" x2="437" y2="226"/><circle cx="548" cy="241" r="34"/><line x1="548" y1="241" x2="566" y2="247"/><circle cx="640" cy="241" r="34"/><line x1="640" y1="241" x2="631" y2="222"/><rect x="290" y="292" width="200" height="118"/><circle cx="342" cy="351" r="42"/><circle cx="342" cy="351" r="36"/><circle cx="438" cy="351" r="42"/><circle cx="438" cy="351" r="36"/><circle cx="390" cy="322" r="10"/><circle cx="390" cy="380" r="10"/><rect x="505" y="292" width="200" height="118"/><circle cx="557" cy="351" r="42"/><circle cx="557" cy="351" r="36"/><circle cx="653" cy="351" r="42"/><circle cx="653" cy="351" r="36"/><circle cx="605" cy="322" r="10"/><circle cx="605" cy="380" r="10"/><rect x="150" y="282" width="120" height="136"/><rect x="166" y="298" width="88" height="104"/><rect x="192" y="332" width="36" height="36"/><line x1="166" y1="298" x2="192" y2="332"/><line x1="254" y1="298" x2="228" y2="332"/><line x1="166" y1="402" x2="192" y2="368"/><line x1="254" y1="402" x2="228" y2="368"/><rect x="690" y="282" width="120" height="136"/><rect x="706" y="298" width="88" height="104"/><rect x="732" y="332" width="36" height="36"/><line x1="706" y1="298" x2="732" y2="332"/><line x1="794" y1="298" x2="768" y2="332"/><line x1="706" y1="402" x2="732" y2="368"/><line x1="794" y1="402" x2="768" y2="368"/><line x1="310" y1="124" x2="152" y2="284"/><line x1="685" y1="124" x2="808" y2="284"/><rect x="75" y="424" width="200" height="116"/><circle cx="175" cy="482" r="50"/><circle cx="175" cy="482" r="43"/><rect x="290" y="424" width="200" height="116"/><rect x="370" y="471" width="16" height="22"/><rect x="394" y="471" width="16" height="22"/><rect x="505" y="424" width="200" height="116"/><rect x="585" y="471" width="16" height="22"/><rect x="609" y="471" width="16" height="22"/><rect x="720" y="424" width="200" height="116"/><circle cx="820" cy="482" r="50"/><circle cx="820" cy="482" r="43"/><rect x="75" y="546" width="200" height="244"/><circle class="woof" cx="175" cy="626" r="70"/><circle cx="175" cy="626" r="62"/><line x1="87" y1="712" x2="263" y2="712"/><line x1="87" y1="790" x2="175" y2="712"/><line x1="263" y1="790" x2="175" y2="712"/><rect x="290" y="546" width="200" height="244"/><circle class="woof" cx="390" cy="626" r="70"/><circle cx="390" cy="626" r="62"/><line x1="302" y1="712" x2="478" y2="712"/><line x1="302" y1="790" x2="390" y2="712"/><line x1="478" y1="790" x2="390" y2="712"/><rect x="505" y="546" width="200" height="244"/><circle class="woof" cx="605" cy="626" r="70"/><circle cx="605" cy="626" r="62"/><line x1="517" y1="712" x2="693" y2="712"/><line x1="517" y1="790" x2="605" y2="712"/><line x1="693" y1="790" x2="605" y2="712"/><rect x="720" y="546" width="200" height="244"/><circle class="woof" cx="820" cy="626" r="70"/><circle cx="820" cy="626" r="62"/><line x1="732" y1="712" x2="908" y2="712"/><line x1="732" y1="790" x2="820" y2="712"/><line x1="908" y1="790" x2="820" y2="712"/></g><pattern id="mesh" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="1.7" fill="currentColor"/></pattern><g id="c-woofer" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="220" cy="220" r="216"/><circle cx="220" cy="220" r="198"/><circle cx="220" cy="220" r="192" fill="url(#mesh)" stroke="none" opacity=".55"/><circle cx="220" cy="220" r="60"/><circle cx="220" cy="220" r="26"/><circle cx="427.0" cy="220.0" r="7"/><circle cx="366.4" cy="366.4" r="7"/><circle cx="220.0" cy="427.0" r="7"/><circle cx="73.6" cy="366.4" r="7"/><circle cx="13.0" cy="220.0" r="7"/><circle cx="73.6" cy="73.6" r="7"/><circle cx="220.0" cy="13.0" r="7"/><circle cx="366.4" cy="73.6" r="7"/></g><g id="c-dial" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="100" cy="100" r="94"/><circle cx="100" cy="100" r="86"/><circle cx="100" cy="100" r="5" fill="currentColor" stroke="none"/><line class="dhand" x1="100" y1="100" x2="152" y2="64"/><line class="dhand2" x1="100" y1="100" x2="100" y2="30"/><line x1="180.0" y1="100.0" x2="188.0" y2="100.0"/><line x1="169.3" y1="140.0" x2="176.2" y2="144.0"/><line x1="140.0" y1="169.3" x2="144.0" y2="176.2"/><line x1="100.0" y1="180.0" x2="100.0" y2="188.0"/><line x1="60.0" y1="169.3" x2="56.0" y2="176.2"/><line x1="30.7" y1="140.0" x2="23.8" y2="144.0"/><line x1="20.0" y1="100.0" x2="12.0" y2="100.0"/><line x1="30.7" y1="60.0" x2="23.8" y2="56.0"/><line x1="60.0" y1="30.7" x2="56.0" y2="23.8"/><line x1="100.0" y1="20.0" x2="100.0" y2="12.0"/><line x1="140.0" y1="30.7" x2="144.0" y2="23.8"/><line x1="169.3" y1="60.0" x2="176.2" y2="56.0"/></g><g id="c-tweetrow" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="2" width="396" height="96"/><line x1="101" y1="2" x2="101" y2="98"/><line x1="200" y1="2" x2="200" y2="98"/><line x1="299" y1="2" x2="299" y2="98"/><circle cx="51.5" cy="50" r="20"/><circle cx="51.5" cy="50" r="8"/><circle cx="150.5" cy="50" r="20"/><circle cx="150.5" cy="50" r="8"/><circle cx="249.5" cy="50" r="20"/><circle cx="249.5" cy="50" r="8"/><circle cx="348.5" cy="50" r="20"/><circle cx="348.5" cy="50" r="8"/></g><g id="c-horn" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="4" width="232" height="264"/><rect x="34" y="36" width="172" height="200"/><rect x="86" y="102" width="68" height="68"/><line x1="34" y1="36" x2="86" y2="102"/><line x1="206" y1="36" x2="154" y2="102"/><line x1="34" y1="236" x2="86" y2="170"/><line x1="206" y1="236" x2="154" y2="170"/></g><g id="c-scoop" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="394" height="294"/><line x1="18" y1="150" x2="382" y2="150"/><line x1="18" y1="294" x2="200" y2="150"/><line x1="382" y1="294" x2="200" y2="150"/></g></defs></svg>
 <div id="deck">
 
   <!-- 1 TITLE -->
@@ -175,6 +168,8 @@
 
   <!-- 2 THE EVENT -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 440 440" aria-hidden="true" style="width:min(52vw,720px);right:-14vw;top:50%;transform:translateY(-50%)"><use href="#c-woofer"/></svg>
+    <svg class="frag gr" viewBox="0 0 400 100" aria-hidden="true" style="width:180px;left:4vw;bottom:8vh"><use href="#c-tweetrow"/></svg>
     <div class="wrap">
       <h2 class="display">The <span class="accent">Event</span></h2>
       <p class="lead">Our two collectives host regular dub &amp; reggae sessions through September &amp; October, leading up to the Club Nothing × Keep Hush Live nights on <b style="color:var(--ink)">October 9th and 16th</b>.</p>
@@ -189,6 +184,8 @@
 
   <!-- 3 FORMAT & LINEUP -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 200 200" aria-hidden="true" style="width:min(26vw,380px);left:-9vw;bottom:-8vh"><use href="#c-dial"/></svg>
+    <svg class="frag" viewBox="0 0 400 100" aria-hidden="true" style="width:min(20vw,300px);right:3vw;top:6vh"><use href="#c-tweetrow"/></svg>
     <div class="wrap">
       <h2 class="display">Format &amp; <span class="accent">Lineup</span></h2>
       <div class="grid2">
@@ -218,6 +215,8 @@
 
   <!-- 5 VENUE -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 240 272" aria-hidden="true" style="width:min(24vw,340px);right:2vw;top:50%;transform:translateY(-50%)"><use href="#c-horn"/></svg>
+    <svg class="frag gr" viewBox="0 0 200 200" aria-hidden="true" style="width:90px;left:6vw;top:9vh"><use href="#c-dial"/></svg>
     <div class="wrap">
       <h2 class="display">Venue &amp; <span class="accent">Capacity</span></h2>
       <div class="metrics">
@@ -232,6 +231,8 @@
 
   <!-- 6 PRODUCTION -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 440 440" aria-hidden="true" style="width:min(30vw,420px);right:-8vw;bottom:-12vh"><use href="#c-woofer"/></svg>
+    <svg class="frag" viewBox="0 0 200 200" aria-hidden="true" style="width:120px;right:14vw;top:7vh"><use href="#c-dial"/></svg>
     <div class="wrap">
       <h2 class="display">Production</h2>
       <p class="lead">Production will be designed by <b style="color:var(--ink)">Sakib Tonmoy</b> from Bhai Bhai Soundsystem.</p>
@@ -252,6 +253,7 @@
 
   <!-- 7 POSTER -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 400 100" aria-hidden="true" style="width:min(42vw,600px);right:-6vw;top:8vh"><use href="#c-tweetrow"/></svg>
     <div class="wrap">
       <h2 class="display">Poster / <span class="accent">Flyer</span></h2>
       <p class="sub">Artwork and campaign visuals led by <b style="color:var(--ink)">TAK</b>. A weekly poster set — one per night — under a single campaign identity carrying the <b style="color:var(--ink)">Sagarmatha Dub Club</b> mark.</p>
@@ -265,6 +267,8 @@
 
   <!-- 8 AUDIENCE -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 440 440" aria-hidden="true" style="width:min(46vw,640px);left:-16vw;top:-18vh"><use href="#c-woofer"/></svg>
+    <svg class="frag gr" viewBox="0 0 240 272" aria-hidden="true" style="width:110px;right:5vw;bottom:9vh"><use href="#c-horn"/></svg>
     <div class="wrap">
       <h2 class="display">Audience</h2>
       <div class="grid2">
@@ -277,6 +281,7 @@
 
   <!-- 9 TICKETING -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 200 200" aria-hidden="true" style="width:min(24vw,340px);right:0;top:12vh"><use href="#c-dial"/></svg>
     <div class="wrap">
       <h2 class="display">Ticketing &amp; <span class="accent">Invites</span></h2>
       <div class="metrics">
@@ -290,6 +295,7 @@
 
   <!-- 10 BUDGET -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 400 300" aria-hidden="true" style="width:min(22vw,320px);right:-4vw;bottom:-6vh"><use href="#c-scoop"/></svg>
     <div class="wrap">
       <h2 class="display">Budget</h2>
       <p class="sub">Total project cost is <span class="accent">$11,382</span>. The grant is concentrated on the 2 Keep Hush Live nights — covering international flights, 2 nights of accommodation, and fair artist fees for touring artists. The 2 additional daytime-session and local club nights are run as a give-back to the community, funded separately by Bhai Bhai and Everest. Bar and food are run by the venue and sit outside this budget.</p>
@@ -321,6 +327,8 @@
 
   <!-- 11 TEAM -->
   <section class="slide">
+    <svg class="frag" viewBox="0 0 400 100" aria-hidden="true" style="width:min(18vw,260px);right:3vw;bottom:7vh"><use href="#c-tweetrow"/></svg>
+    <svg class="frag gr" viewBox="0 0 440 440" aria-hidden="true" style="width:130px;left:3vw;top:8vh"><use href="#c-woofer"/></svg>
     <div class="wrap">
       <h2 class="display">Team &amp; <span class="accent">Partners</span></h2>
       <div class="grid2">
